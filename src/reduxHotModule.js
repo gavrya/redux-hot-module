@@ -12,6 +12,14 @@ class ReduxHotModule {
     addAction(this.actionsRepo, name, { isParam: true, defaultValue })
   }
 
+  addParamsAction(name, defaultValue = {}) {
+    addAction(this.actionsRepo, name, {
+      isParams: true,
+      defaultValue,
+      keys: Object.keys(defaultValue)
+    })
+  }
+
   addEventAction(name, defaultValue = null) {
     addAction(this.actionsRepo, name, { isEvent: true, defaultValue })
   }
@@ -24,6 +32,7 @@ class ReduxHotModule {
     const types = {}
     const actions = {}
     const paramTypes = {}
+    const paramsTypes = {}
     const resetTypes = {}
     const defaultState = {}
     const namespace = `@@${this.module}`
@@ -46,6 +55,9 @@ class ReduxHotModule {
         actions[actionName] = (value = defaultValue) => ({ type, payload: { [name]: value } })
         defaultState[name] = defaultValue
         paramTypes[type] = meta
+      } else if (meta.isParams) {
+        actions[actionName] = (value = {}) => ({ type, payload: { ...defaultValue, ...value } })
+        paramsTypes[type] = meta
       } else if (meta.isEvent) {
         actions[actionName] = (value = defaultValue) => ({ type, payload: value })
       } else {
@@ -65,6 +77,12 @@ class ReduxHotModule {
 
       if (hasOwnProp(paramTypes, type)) {
         return { ...state, ...action.payload }
+      }
+
+      if (hasOwnProp(paramsTypes, type)) {
+        const { keys } = paramsTypes[type]
+
+        return mergeProps(state, action.payload, keys)
       }
 
       if (hasOwnProp(resetTypes, type)) {
