@@ -1,4 +1,4 @@
-import { ReduxHotModule } from '../../src/reduxHotModule'
+import { ML } from '../../src/ml'
 import { connect } from 'react-redux'
 
 jest.mock('react-redux', () => ({
@@ -11,7 +11,7 @@ describe('test create()', () => {
   })
 
   test('should return expected values', () => {
-    const ml = new ReduxHotModule('moduleName')
+    const ml = new ML('moduleName')
     const result = ml.create()
 
     expect(typeof result).toBe('object')
@@ -41,7 +41,7 @@ describe('test create()', () => {
   })
 
   test('should return frozen objects to avoid modification', () => {
-    const ml = new ReduxHotModule('moduleName')
+    const ml = new ML('moduleName')
     const result = ml.create()
     const { types, actions, defaultState, initialState, mapDispatchToProps } = result
 
@@ -53,7 +53,7 @@ describe('test create()', () => {
   })
 
   test('should call react-redux connect() once per create()', () => {
-    const ml = new ReduxHotModule('moduleName')
+    const ml = new ML('moduleName')
 
     ml.create()
 

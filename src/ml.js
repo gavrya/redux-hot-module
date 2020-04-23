@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import { toConst, startsWith, hasOwnProp, mergeProps, addAction } from './utils'
 
-class ReduxHotModule {
+class ML {
   constructor(module, preloadedState = null) {
     this.module = module
     this.preloadedState = preloadedState
@@ -99,4 +99,4 @@ class ReduxHotModule {
   }
 }
 
-export { ReduxHotModule }
+export { ML }

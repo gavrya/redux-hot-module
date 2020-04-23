@@ -1,7 +1,7 @@
-import { ReduxHotModule } from '../../src/reduxHotModule'
+import { ML } from '../../src/ml'
 
 jest.mock('react-redux', () => ({
-  connect: jest.fn((mapStateToProps, mapDispatchToProps) => (component) => component)
+  connect: jest.fn()
 }))
 
 describe('test mapStateToProps()', () => {
@@ -10,7 +10,7 @@ describe('test mapStateToProps()', () => {
   })
 
   test('should return module state from redux state', () => {
-    const ml = new ReduxHotModule('moduleName')
+    const ml = new ML('moduleName')
     const { namespace, mapStateToProps } = ml.create()
 
     expect(typeof namespace).toBe('string')

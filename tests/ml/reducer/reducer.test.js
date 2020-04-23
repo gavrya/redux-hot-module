@@ -1,7 +1,7 @@
-import { ReduxHotModule } from '../../../src/reduxHotModule'
+import { ML } from '../../../src/ml'
 
 jest.mock('react-redux', () => ({
-  connect: jest.fn((mapStateToProps, mapDispatchToProps) => (component) => component)
+  connect: jest.fn()
 }))
 
 describe('test reducer', () => {
@@ -10,7 +10,7 @@ describe('test reducer', () => {
   })
 
   test('should ignore redux action without type', () => {
-    const ml = new ReduxHotModule('moduleName')
+    const ml = new ML('moduleName')
 
     ml.addParamAction('items', [])
 
@@ -23,7 +23,7 @@ describe('test reducer', () => {
   })
 
   test('should ignore redux action with unregistered type prefix', () => {
-    const ml = new ReduxHotModule('moduleName')
+    const ml = new ML('moduleName')
 
     ml.addParamAction('items', [])
 
@@ -36,7 +36,7 @@ describe('test reducer', () => {
   })
 
   test('should ignore redux action with unregistered type', () => {
-    const ml = new ReduxHotModule('moduleName')
+    const ml = new ML('moduleName')
 
     ml.addParamAction('items', [])
 
@@ -49,7 +49,7 @@ describe('test reducer', () => {
   })
 
   test('should initially return defaultState if preloadedState is not provided', () => {
-    const ml = new ReduxHotModule('moduleName')
+    const ml = new ML('moduleName')
 
     ml.addParamAction('items', [])
 
@@ -64,7 +64,7 @@ describe('test reducer', () => {
   test('should initially return initialState if preloadedState is provided', () => {
     const preloadedState = {}
 
-    const ml = new ReduxHotModule('moduleName', preloadedState)
+    const ml = new ML('moduleName', preloadedState)
 
     ml.addParamAction('items', [])
 

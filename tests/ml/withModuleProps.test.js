@@ -1,8 +1,8 @@
 import { connect } from 'react-redux'
-import { ReduxHotModule } from '../../src/reduxHotModule'
+import { ML } from '../../src/ml'
 
 jest.mock('react-redux', () => ({
-  connect: jest.fn((mapStateToProps, mapDispatchToProps) => (component) => component)
+  connect: jest.fn()
 }))
 
 describe('test withModuleProps()', () => {
@@ -11,7 +11,7 @@ describe('test withModuleProps()', () => {
   })
 
   test('should call react-redux connect() with proper args', () => {
-    const ml = new ReduxHotModule('moduleName')
+    const ml = new ML('moduleName')
     const { mapStateToProps, mapDispatchToProps } = ml.create()
 
     expect(typeof mapStateToProps).toBe('function')

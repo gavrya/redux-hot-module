@@ -1,7 +1,7 @@
-import { ReduxHotModule } from '../../../src/reduxHotModule'
+import { ML } from '../../../src/ml'
 
 jest.mock('react-redux', () => ({
-  connect: jest.fn((mapStateToProps, mapDispatchToProps) => (component) => component)
+  connect: jest.fn()
 }))
 
 describe('test reset actions', () => {
@@ -10,7 +10,7 @@ describe('test reset actions', () => {
   })
 
   test('should have expected name', () => {
-    const ml = new ReduxHotModule('moduleName')
+    const ml = new ML('moduleName')
 
     ml.addResetAction()
     ml.addResetAction('clear')
@@ -27,7 +27,7 @@ describe('test reset actions', () => {
   })
 
   test('should return redux action without payload', () => {
-    const ml = new ReduxHotModule('moduleName')
+    const ml = new ML('moduleName')
 
     ml.addResetAction()
 
@@ -50,7 +50,7 @@ describe('test reset actions', () => {
   })
 
   test('should return redux action without payload when creating with reset props', () => {
-    const ml = new ReduxHotModule('moduleName')
+    const ml = new ML('moduleName')
 
     ml.addResetAction('clearSelectors', ['one', 'two'])
 

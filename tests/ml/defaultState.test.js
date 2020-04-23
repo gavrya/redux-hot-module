@@ -1,7 +1,7 @@
-import { ReduxHotModule } from '../../src/reduxHotModule'
+import { ML } from '../../src/ml'
 
 jest.mock('react-redux', () => ({
-  connect: jest.fn((mapStateToProps, mapDispatchToProps) => (component) => component)
+  connect: jest.fn()
 }))
 
 describe('test defaultState', () => {
@@ -10,7 +10,7 @@ describe('test defaultState', () => {
   })
 
   test('should not be empty if param actions were added', () => {
-    const ml = new ReduxHotModule('moduleName')
+    const ml = new ML('moduleName')
 
     ml.addParamAction('a', true)
     ml.addParamAction('b', {})
@@ -23,7 +23,7 @@ describe('test defaultState', () => {
   })
 
   test('should be empty if param actions were not added', () => {
-    const ml = new ReduxHotModule('moduleName')
+    const ml = new ML('moduleName')
     const { defaultState } = ml.create()
 
     expect(typeof defaultState).toBe('object')
@@ -31,7 +31,7 @@ describe('test defaultState', () => {
   })
 
   test('should be equal to initialState if preloadedState is not provided', () => {
-    const ml = new ReduxHotModule('moduleName')
+    const ml = new ML('moduleName')
 
     ml.addParamAction('item')
 
@@ -45,7 +45,7 @@ describe('test defaultState', () => {
   test('should not be equal to initialState if preloadedState is provided', () => {
     const preloadedState = {}
 
-    const ml = new ReduxHotModule('moduleName', preloadedState)
+    const ml = new ML('moduleName', preloadedState)
 
     ml.addParamAction('item')
 

@@ -1,7 +1,7 @@
-import { ReduxHotModule } from '../../../src/reduxHotModule'
+import { ML } from '../../../src/ml'
 
 jest.mock('react-redux', () => ({
-  connect: jest.fn((mapStateToProps, mapDispatchToProps) => (component) => component)
+  connect: jest.fn()
 }))
 
 describe('test event actions', () => {
@@ -10,7 +10,7 @@ describe('test event actions', () => {
   })
 
   test('should have expected name', () => {
-    const ml = new ReduxHotModule('moduleName')
+    const ml = new ML('moduleName')
 
     ml.addEventAction('loadEvent')
 
@@ -25,7 +25,7 @@ describe('test event actions', () => {
   })
 
   test('should return redux action with default value', () => {
-    const ml = new ReduxHotModule('moduleName')
+    const ml = new ML('moduleName')
 
     ml.addEventAction('loadedEvent')
 
@@ -48,7 +48,7 @@ describe('test event actions', () => {
   })
 
   test('should return redux action with provided default value', () => {
-    const ml = new ReduxHotModule('moduleName')
+    const ml = new ML('moduleName')
 
     const defaultValue = {}
 
@@ -74,7 +74,7 @@ describe('test event actions', () => {
   })
 
   test('should return redux action with provided payload', () => {
-    const ml = new ReduxHotModule('moduleName')
+    const ml = new ML('moduleName')
 
     ml.addEventAction('loadedEvent')
 

@@ -1,7 +1,7 @@
-import { ReduxHotModule } from '../../../src/reduxHotModule'
+import { ML } from '../../../src/ml'
 
 jest.mock('react-redux', () => ({
-  connect: jest.fn((mapStateToProps, mapDispatchToProps) => (component) => component)
+  connect: jest.fn()
 }))
 
 describe('test param actions', () => {
@@ -10,7 +10,7 @@ describe('test param actions', () => {
   })
 
   test('should have expected name', () => {
-    const ml = new ReduxHotModule('moduleName')
+    const ml = new ML('moduleName')
 
     ml.addParamAction('items', false)
 
@@ -25,7 +25,7 @@ describe('test param actions', () => {
   })
 
   test('should return redux action with default value', () => {
-    const ml = new ReduxHotModule('moduleName')
+    const ml = new ML('moduleName')
 
     const defaultValue = []
 
@@ -53,7 +53,7 @@ describe('test param actions', () => {
   })
 
   test('should return redux action with provided value', () => {
-    const ml = new ReduxHotModule('moduleName')
+    const ml = new ML('moduleName')
 
     ml.addParamAction('items', [])
 
@@ -80,7 +80,7 @@ describe('test param actions', () => {
   })
 
   test('should return redux action with null value if action added without default value', () => {
-    const ml = new ReduxHotModule('moduleName')
+    const ml = new ML('moduleName')
 
     ml.addParamAction('selectedItem')
 

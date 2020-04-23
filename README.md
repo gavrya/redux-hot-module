@@ -6,7 +6,7 @@
 
 # redux-hot-module
 
-under development
+Tiny and performance-optimized library for creating module based redux actions, reducers, and types
 
 ## Installation
 
@@ -22,15 +22,23 @@ npm i redux-hot-module
 yarn add redux-hot-module
 ```
 
+### unpkg
+
+Global name: ReduxHotModule
+
+```html
+<script src="https://unpkg.com/redux-hot-module@latest/lib/bundle.umd.js"></script>
+```
+
 ## Usage
 
 ```js
-import { ReduxHotModule } from 'redux-hot-module'
+import { ML } from 'redux-hot-module'
 
 // cached or mocked state that will be merged in (optional)
 const preloadedState = localStorage.getItem('searchResults')
 
-const ml = new ReduxHotModule('searchResults', preloadedState)
+const ml = new ML('searchResults', preloadedState)
 
 // param actions
 ml.addParamAction('posts', [])
@@ -75,18 +83,4 @@ export const {
     resetAction
   }
 } = ml.create()
-```
-
-### unpkg
-
-Global name: ReduxHotModule
-
-Requires 'react-redux' package with 'ReactRedux' global name
-
-https://github.com/reduxjs/react-redux
-
-https://cdnjs.com/libraries/react-redux
-
-```html
-<script src="https://unpkg.com/redux-hot-module@latest/lib/bundle.umd.js"></script>
 ```

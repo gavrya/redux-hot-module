@@ -1,7 +1,7 @@
-import { ReduxHotModule } from '../../src/reduxHotModule'
+import { ML } from '../../src/ml'
 
 jest.mock('react-redux', () => ({
-  connect: jest.fn((mapStateToProps, mapDispatchToProps) => (component) => component)
+  connect: jest.fn()
 }))
 
 describe('test mapDispatchToProps', () => {
@@ -10,7 +10,7 @@ describe('test mapDispatchToProps', () => {
   })
 
   test('should be equal to actions', () => {
-    const ml = new ReduxHotModule('moduleName')
+    const ml = new ML('moduleName')
     const { actions, mapDispatchToProps } = ml.create()
 
     expect(typeof actions).toBe('object')
